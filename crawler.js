@@ -2,9 +2,9 @@ const internetData = require("./internet/internet-data")
 const internetDataOne = internetData.internet1.pages
 const internetDataTwo = internetData.internet2.pages
 
-let pages = []
-let duplicates = []
-let invalid = []
+let success = []
+let skipped = []
+let error = []
 
 // returns all the data for first page in object
 // console.log(internetDataOne[0])
@@ -34,44 +34,44 @@ let urls = validUrls(internetDataOne)
 for (let i = 0; i < internetDataOne.length; i++) {
     // console.log(internetDataOne[i].address)
     // console.log(urls)
-    pages.push(internetDataOne[i].address)
+    success.push(internetDataOne[i].address)
     // for (let i = 0; i < internetDataOne[i].links.length; i++) {
         // console.log(internetDataOne[i])
         let links = internetDataOne[i].links
         for (let j = 0; j < links.length; j++) {
             // console.log(links)
-            if (pages.includes(links[j])) {
-                duplicates.push(links[j])
+            if (success.includes(links[j])) {
+                skipped.push(links[j])
                 // console.log(links[j])
             } 
             if (!urls.includes(links[j])){
-                invalid.push(links[j])
-                // console.log(invalid)
+                error.push(links[j])
+                // console.log(error)
             }
         }
         if (!urls.includes(internetDataOne[i].address)){
-            invalid.push(internetDataOne[i].address)
-            console.log(invalid)
+            error.push(internetDataOne[i].address)
+            console.log(error)
         }
         // for (let k = 0; k < links.length; k++) {
-        //     console.log(pages.includes(links[k]))
-        //     if (!pages.includes(links[k])) {
-        //         invalid.push(links[k])
+        //     console.log(success.includes(links[k]))
+        //     if (!success.includes(links[k])) {
+        //         error.push(links[k])
         //         // console.log(links[j])
         //     } 
-        //     console.log(invalid)
+        //     console.log(error)
         // }
 
         // internetDataOne[i].links.forEach(function(link){
         //     links.push(link)
         // })
         // console.log(links)
-        // if (pages.includes()) {
-        //     duplicates.push(internetDataOne[i].links[i])
+        // if (success.includes()) {
+        //     skipped.push(internetDataOne[i].links[i])
         // }
     }
 // }
 
-console.log(pages)
-console.log(duplicates)
-console.log(invalid)
+console.log(success)
+console.log(skipped)
+console.log(error)
