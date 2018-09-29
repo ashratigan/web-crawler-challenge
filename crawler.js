@@ -42,11 +42,13 @@ const crawler = function (data) {
             }
         }
     }
+    // add success, skipped, and error to results object
     let results = {
         success,
         skipped,
         error
     }
+    // return results object
     console.log(results)
     return results
 }
