@@ -21,26 +21,65 @@ const crawler = function (data) {
     let skipped = []
     let error = []
 
-    // iterate through each address
+
+    // ************************************************************
+    // IN PROGRESS
+    // set first address to success
+    success.push(data[0].address)
+
+    // check links of first address
+    // if not already in success, push to success
+    // then check links of lins from first address
+    // if not already in success, push to success,
+    // repeat 
+
     for (let i = 0; i < data.length; i++) {
         // push address to success
         // actual unneccessary can just url urls instead for success
-        success.push(data[i].address)
+        // success.push(data[i].address)
         // set links equal to that iterations links, will reset for each address it goes through
         let links = data[i].links
         // iterates through links
         for (let j = 0; j < links.length; j++) {
             // if link is included in success array already, it is then pushed to skipped array
-            if (success.includes(links[j])) {
+            if (success.includes(links[j]) && !skipped.includes(links[j])) {
                 skipped.push(links[j])
-            } 
+            }
+            // 
+            if (!success.includes(links[j]) && urls.includes(links[j])) {
+                success.push(links[j])
+            }
             // if link is not included in urls, it is pushed to error array
             if (!urls.includes(links[j]) && !error.includes(links[j])){  // && !errror.includes(links[j]) -> duplicate error for page 1
                 error.push(links[j])
             }
         }
     }
-    console.log(`Success: ${urls}`)
+
+
+     // ************************************************************
+
+
+    // iterate through each address
+    // for (let i = 0; i < data.length; i++) {
+    //     // push address to success
+    //     // actual unneccessary can just url urls instead for success
+    //     success.push(data[i].address)
+    //     // set links equal to that iterations links, will reset for each address it goes through
+    //     let links = data[i].links
+    //     // iterates through links
+    //     for (let j = 0; j < links.length; j++) {
+    //         // if link is included in success array already, it is then pushed to skipped array
+    //         if (success.includes(links[j])) {
+    //             skipped.push(links[j])
+    //         } 
+    //         // if link is not included in urls, it is pushed to error array
+    //         if (!urls.includes(links[j]) && !error.includes(links[j])){  // && !errror.includes(links[j]) -> duplicate error for page 1
+    //             error.push(links[j])
+    //         }
+    //     }
+    // }
+    // // console.log(`Success: ${urls}`)
     console.log(`Success: ${success}`)
     console.log(`Skipped: ${skipped}`)
     console.log(`Error: ${error}`)
