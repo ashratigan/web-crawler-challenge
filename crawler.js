@@ -15,29 +15,16 @@ const validUrls = function (data) {
 // Function to 'crawl' through websites
 const crawler = function (data) {
     // urls is found using validUrls function
-    // urls is the same as success
     let urls = validUrls(data)
     let success = []
     let skipped = []
     let error = []
 
-
-    // ************************************************************
-    // IN PROGRESS
     // set first address to success
     success.push(data[0].address)
 
-    // check links of first address
-    // if not already in success, push to success
-    // then check links of lins from first address
-    // if not already in success, push to success,
-    // repeat 
-
     for (let i = 0; i < data.length; i++) {
-        // push address to success
-        // actual unneccessary can just url urls instead for success
-        // success.push(data[i].address)
-        // set links equal to that iterations links, will reset for each address it goes through
+        // set links equal to that iterations links, will reset for each address it goes through, for simplicity
         let links = data[i].links
         // iterates through links
         for (let j = 0; j < links.length; j++) {
@@ -45,41 +32,17 @@ const crawler = function (data) {
             if (success.includes(links[j]) && !skipped.includes(links[j])) {
                 skipped.push(links[j])
             }
-            // 
-            if (!success.includes(links[j]) && urls.includes(links[j])) {
+            // if link is not in success and is in urls, it is then pushed to success.
+            else if (!success.includes(links[j]) && urls.includes(links[j])) {
                 success.push(links[j])
             }
             // if link is not included in urls, it is pushed to error array
-            if (!urls.includes(links[j]) && !error.includes(links[j])){  // && !errror.includes(links[j]) -> duplicate error for page 1
+            else if (!urls.includes(links[j]) && !error.includes(links[j])){  // && !errror.includes(links[j]) -> duplicate error for page 1
                 error.push(links[j])
             }
         }
     }
 
-
-     // ************************************************************
-
-
-    // iterate through each address
-    // for (let i = 0; i < data.length; i++) {
-    //     // push address to success
-    //     // actual unneccessary can just url urls instead for success
-    //     success.push(data[i].address)
-    //     // set links equal to that iterations links, will reset for each address it goes through
-    //     let links = data[i].links
-    //     // iterates through links
-    //     for (let j = 0; j < links.length; j++) {
-    //         // if link is included in success array already, it is then pushed to skipped array
-    //         if (success.includes(links[j])) {
-    //             skipped.push(links[j])
-    //         } 
-    //         // if link is not included in urls, it is pushed to error array
-    //         if (!urls.includes(links[j]) && !error.includes(links[j])){  // && !errror.includes(links[j]) -> duplicate error for page 1
-    //             error.push(links[j])
-    //         }
-    //     }
-    // }
-    // // console.log(`Success: ${urls}`)
     console.log(`Success: ${success}`)
     console.log(`Skipped: ${skipped}`)
     console.log(`Error: ${error}`)
@@ -97,5 +60,3 @@ crawler(internetDataTwo)
 // To Do
 // Figure out why return isn't working....????
 // write tests?!
-// check for and remove duplicates 
-// for internetDataTwo -> page 6 should not be there!!! -> no previous urls point to it
