@@ -20,7 +20,7 @@ const crawler = function (data) {
     let skipped = []
     let error = []
 
-    // set first address to success
+    // pushes first address to success
     success.push(data[0].address)
 
     for (let i = 0; i < data.length; i++) {
@@ -37,26 +37,19 @@ const crawler = function (data) {
                 success.push(links[j])
             }
             // if link is not included in urls, it is pushed to error array
-            else if (!urls.includes(links[j]) && !error.includes(links[j])){  // && !errror.includes(links[j]) -> duplicate error for page 1
+            else if (!urls.includes(links[j]) && !error.includes(links[j])){  
                 error.push(links[j])
             }
         }
     }
-
-    console.log(`Success: ${success}`)
-    console.log(`Skipped: ${skipped}`)
-    console.log(`Error: ${error}`)
-    return data
-    // return[success, skipped, error]
-    // return Math.PI
-    success = []
-    skipped = []
-    error = []
+    let results = {
+        success,
+        skipped,
+        error
+    }
+    console.log(results)
+    return results
 }
 
 crawler(internetDataOne)
 crawler(internetDataTwo)
-
-// To Do
-// Figure out why return isn't working....????
-// write tests?!
