@@ -26,16 +26,24 @@ for (let i = 0; i < internetDataOne.length; i++) {
     pages.push(internetDataOne[i].address)
     // for (let i = 0; i < internetDataOne[i].links.length; i++) {
         // console.log(internetDataOne[i])
-        let links = []
-        internetDataOne[i].links.forEach(function(link){
-            links.push(link)
-        })
-        console.log(links)
+        let links = internetDataOne[i].links
+        for (let j = 0; j < links.length; j++) {
+            // console.log(links)
+            if (pages.includes(links[j])) {
+                duplicates.push(links[j])
+                // console.log(links[j])
+            }
+        }
+
+        // internetDataOne[i].links.forEach(function(link){
+        //     links.push(link)
+        // })
+        // console.log(links)
         // if (pages.includes()) {
         //     duplicates.push(internetDataOne[i].links[i])
         // }
     // }
 }
 
-// console.log(pages)
-// console.log(duplicates)
+console.log(pages)
+console.log(duplicates)
