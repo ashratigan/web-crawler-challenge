@@ -1,3 +1,5 @@
+'use strict'
+
 const internetData = require("./internet/internet-data")
 const internetDataOne = internetData.internet1.pages
 const internetDataTwo = internetData.internet2.pages
@@ -49,9 +51,13 @@ const crawler = function (data) {
         error
     }
     // return results object
-    console.log(results)
+    // console.log(results)
     return results
 }
 
-crawler(internetDataOne)
-crawler(internetDataTwo)
+// crawler(internetDataOne)
+// crawler(internetDataTwo)
+
+module.exports = {
+    crawler
+}
