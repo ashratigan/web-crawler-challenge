@@ -1,6 +1,6 @@
 'use strict'
 
-const expect = require('chai').expect
+// const expect = require('chai').expect
 const assert = require('chai').assert;
 
 // require data
@@ -15,6 +15,11 @@ describe('Web crawler', function() {
     it('should return an object', function () {
       let result = webCrawler.crawler(internetDataOne)
       assert.typeOf(result, 'object')
+    })
+    it('success array should return an array', function () {
+      let result = webCrawler.crawler(internetDataOne)
+      let success = Object.values(result)[0]
+      assert.typeOf(success, 'array')
     })
     it('skipped array should return an array', function () {
       let result = webCrawler.crawler(internetDataOne)
@@ -37,3 +42,6 @@ describe('Web crawler', function() {
       assert.lengthOf(error, 0)
     })
 })
+
+
+// Run ./node_modules/mocha/bin/mocha to check 

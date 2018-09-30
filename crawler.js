@@ -1,8 +1,8 @@
 'use strict'
 
-const internetData = require("./internet/internet-data")
-const internetDataOne = internetData.internet1.pages
-const internetDataTwo = internetData.internet2.pages
+// const internetData = require("./internet/internet-data")
+// const internetDataOne = internetData.internet1.pages
+// const internetDataTwo = internetData.internet2.pages
 
 // Function to check for valid emails
 // This function iterates through all the addresses in the internet data and pushes them to an array called urls
